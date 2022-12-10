@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Do It Today</string>
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
+
+
+    <string name="high_priority">High</string>
+    <string name="med_priority">Medium</string>
+    <string name="low_priority">Low</string>
+
+    <string name="home_place">Home</string>
+    <string name="studies_place">Studies</string>
+    <string name="gym_place">Gym</string>
+    <string name="work_place">Work</string>
+
+
+
+
+    <string name="add_button">Add</string>
+    <string name="update_button">Update</string>
+    <string name="delete_all_tasks">Delete All Tasks</string>
+    <string name="remove_ads">Remove Ads</string>
+    <string name="nothing_to_do">You\'ve got nothing to do.</string>
+
+
+
+    <string name="edit_description">Describe your task&#8230;</string>
+
+    <string name="priority_string">Priority</string>
+    <string name="place_string">Place</string>
+
+</resources>

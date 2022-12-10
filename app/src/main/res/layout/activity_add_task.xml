@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingEnd="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp">
+
+    <EditText
+        android:id="@+id/editTextTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:hint="@string/edit_description"
+        android:paddingBottom="16dp"
+        android:autofillHints="Task Description"
+        android:inputType="text" />
+
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/priority_string"
+        android:textColor="@android:color/primary_text_light" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroupPriority"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <RadioButton
+            android:id="@+id/radButtonPriority1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/materialRed"
+            android:checked="true"
+            android:text="@string/high_priority"
+            android:theme="@style/WhiteRadioButton" />
+
+        <RadioButton
+            android:id="@+id/radButtonPriority2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/materialOrange"
+            android:text="@string/med_priority"
+            android:theme="@style/WhiteRadioButton" />
+
+        <RadioButton
+            android:id="@+id/radButtonPriority3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/materialYellow"
+            android:text="@string/low_priority"
+            android:theme="@style/WhiteRadioButton" />
+
+    </RadioGroup>
+
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/place_string"
+        android:textColor="@android:color/primary_text_light" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroupPlace"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <RadioButton
+            android:id="@+id/radButtonPlace1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorGrey"
+            android:checked="true"
+            android:text="@string/home_place"
+            android:theme="@style/WhiteRadioButton" />
+
+        <RadioButton
+            android:id="@+id/radButtonPlace2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorGrey"
+            android:text="@string/studies_place"
+            android:theme="@style/WhiteRadioButton" />
+
+        <RadioButton
+            android:id="@+id/radButtonPlace3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorGrey"
+            android:text="@string/gym_place"
+            android:theme="@style/WhiteRadioButton" />
+
+        <RadioButton
+            android:id="@+id/radButtonPlace4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorGrey"
+            android:text="@string/work_place"
+            android:theme="@style/WhiteRadioButton" />
+
+    </RadioGroup>
+
+
+
+
+
+
+    <Button
+        android:id="@+id/saveButton"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="@string/add_button"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
