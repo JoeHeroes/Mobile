@@ -6,5 +6,6 @@
         android:id="@+id/delete_all_tasks"
         android:title="@string/delete_all_tasks"
         android:icon="@drawable/ic_delete"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:tint="@android:color/white"/>
 </menu>

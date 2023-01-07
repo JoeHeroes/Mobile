@@ -9,17 +9,17 @@ import pl.edu.pb.projectorganizer.Database.TaskDatabase;
 public class AddTaskViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final TaskDatabase taskDB;
-    private final int mTaskId;
+    private final int TaskId;
 
-    public AddTaskViewModelFactory(TaskDatabase database, int mTaskId){
+    public AddTaskViewModelFactory(TaskDatabase database, int TaskId){
         taskDB = database;
-        this.mTaskId = mTaskId;
+        this.TaskId = TaskId;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new AddTaskViewModel(taskDB, mTaskId);
+        return (T) new AddTaskViewModel(taskDB, TaskId);
     }
 }
 

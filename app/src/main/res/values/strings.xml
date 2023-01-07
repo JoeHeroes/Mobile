@@ -15,19 +15,19 @@
     <string name="work_place">Work</string>
 
 
-
-
     <string name="add_button">Add</string>
+    <string name="weather_button">Check Weather</string>
     <string name="update_button">Update</string>
     <string name="delete_all_tasks">Delete All Tasks</string>
     <string name="remove_ads">Remove Ads</string>
     <string name="nothing_to_do">You\'ve got nothing to do.</string>
 
 
-
     <string name="edit_description">Describe your task&#8230;</string>
 
     <string name="priority_string">Priority</string>
     <string name="place_string">Place</string>
+    <string name="date_string">Date</string>
+    <string name="description_string">Description</string>
 
 </resources>

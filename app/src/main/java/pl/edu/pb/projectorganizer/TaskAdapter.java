@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,7 +59,23 @@ public class TaskAdapter extends  RecyclerView.Adapter<TaskAdapter.TaskViewHolde
         holder.taskDescriptionView.setText(description);
         holder.dataView.setText(data);
         holder.priorityView.setText(Integer.toString(position+1));
-        holder.placeView.setText(Integer.toString(place));
+
+
+
+
+
+
+        if(place == 1){
+            holder.placeView.setImageResource(R.drawable.ic_home);
+        }else if(place == 2){
+            holder.placeView.setImageResource(R.drawable.ic_uni);
+        }else if(place == 3){
+            holder.placeView.setImageResource(R.drawable.ic_gym);
+        }else if(place == 4){
+            holder.placeView.setImageResource(R.drawable.ic_work);
+        }
+
+
 
         holder.checkBox.setChecked(taskEntry.isChecked());
 
@@ -131,7 +148,7 @@ public class TaskAdapter extends  RecyclerView.Adapter<TaskAdapter.TaskViewHolde
         TextView taskDescriptionView;
         TextView dataView;
         TextView priorityView;
-        TextView placeView;
+        ImageView placeView;
         CheckBox checkBox;
 
         public TaskViewHolder(View itemView) {

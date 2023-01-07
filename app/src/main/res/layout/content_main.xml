@@ -20,7 +20,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="32dp"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                android:backgroundTint="#ff0099cc"
                 android:src="@drawable/ic_add" />
         </LinearLayout>
 

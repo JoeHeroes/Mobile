@@ -1,13 +1,23 @@
 package pl.edu.pb.projectorganizer;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,10 +26,12 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import pl.edu.pb.projectorganizer.Database.Task;
 import pl.edu.pb.projectorganizer.Database.TaskDatabase;
 
-public class AddTaskActivity extends AppCompatActivity {
+@RequiresApi(api = Build.VERSION_CODES.N)
+public class AddTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     public static final String EXTRA_TASK_ID = "extraTaskId";
     public static final String INSTANCE_TASK_ID = "instanceTaskId";
+    private static final String DATE_FORMAT = "dd/MM/yyy";
 
     public static final int PRIORITY_HIGH = 1;
     public static final int PRIORITY_MEDIUM = 2;
@@ -33,12 +45,16 @@ public class AddTaskActivity extends AppCompatActivity {
 
     private static final int DEFAULT_TASK_ID = -1;
     private static final String TAG = AddTaskActivity.class.getSimpleName();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+    private final Calendar calendar = Calendar.getInstance();
 
-    EditText mEditText;
-    RadioGroup mRadioGroupPriority ;
-    RadioGroup mRadioGroupPlace ;
+    EditText DescriptionText;
+    RadioGroup RadioGroupPriority ;
+    RadioGroup RadioGroupPlace ;
+    EditText DateText;
     Button mButton;
-
+    Button wButton;
+    Date currentData;
     private int mTaskId = DEFAULT_TASK_ID;
 
     private TaskDatabase taskDB;
@@ -47,6 +63,14 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        wButton = findViewById(R.id.weatherButton);
+
+        wButton.setOnClickListener((v)->{
+            Intent intent = new Intent(AddTaskActivity.this,WeatherActivity.class);
+            intent.putExtra("SHOW_WELCOME", true);
+            startActivity(intent);
+        });
 
         initViews();
 
@@ -85,9 +109,22 @@ public class AddTaskActivity extends AppCompatActivity {
 
 
     private void initViews() {
-        mEditText = findViewById(R.id.editTextTaskDescription);
-        mRadioGroupPriority = findViewById(R.id.radioGroupPriority);
-        mRadioGroupPlace = findViewById(R.id.radioGroupPlace);
+        DescriptionText = findViewById(R.id.editTextTaskDescription);
+        RadioGroupPriority = findViewById(R.id.radioGroupPriority);
+        RadioGroupPlace = findViewById(R.id.radioGroupPlace);
+        DateText = findViewById(R.id.editTextTaskDate);
+        setupDateFieldValue(new Date());
+        DatePickerDialog.OnDateSetListener date=(view12, year, month, day)->{
+            calendar.set(Calendar.YEAR,year);
+            calendar.set(Calendar.MONTH,month);
+            calendar.set(Calendar.DAY_OF_MONTH,day);
+            setupDateFieldValue(calendar.getTime());
+        };
+
+        DateText.setOnClickListener(view1->
+                new DatePickerDialog(this,date,calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH))
+                        .show());
 
 
         mButton = findViewById(R.id.saveButton);
@@ -104,17 +141,29 @@ public class AddTaskActivity extends AppCompatActivity {
         if (task == null ){
             return;
         }
-        mEditText.setText(task.getDescription());
+        DescriptionText.setText(task.getDescription());
+
+        String data = dateFormat.format(task.getDate());
+        DateText.setText(data);
         setPriorityInViews(task.getPriority());
         setPlaceInViews(task.getPlace());
     }
+    private void setupDateFieldValue(Date date) {
+        Locale locale=new Locale("pl","PL");
+        SimpleDateFormat dateFormat=new SimpleDateFormat("dd.MM.yyyy",locale);
+        DateText.setText(dateFormat.format(date));
+        currentData = date;
+    }
+
+
 
 
     public void onSaveButtonClicked() {
-        String description = mEditText.getText().toString();
+        String description = DescriptionText.getText().toString();
         int place = getPlaceFromViews();
         int priority = getPriorityFromViews();
-        Date date = new Date();
+        Date date = currentData;
+        currentData = null;
 
 
 
@@ -205,5 +254,10 @@ public class AddTaskActivity extends AppCompatActivity {
             case PLACE_WORK:
                 ((RadioGroup) findViewById(R.id.radioGroupPlace)).check(R.id.radButtonPlace4);
         }
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
     }
 }
